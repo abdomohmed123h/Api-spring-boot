@@ -92,6 +92,15 @@ public class Student_conteroller {
 
         return ResponseEntity.ok(result);
     }
+   @GetMapping("/getallname")
+    public ResponseEntity<?>getallname() {
+       return ResponseEntity.status(HttpStatus.OK).body(student_servisinterface.findAllNames());
+}
+    @GetMapping("/findenamelike")
+    public ResponseEntity<?> findenamelike(@PathVariable String name) {
+        return ResponseEntity.status(HttpStatus.OK).body(student_servisinterface.findByNameLike(name));
+}
+
 
 
 

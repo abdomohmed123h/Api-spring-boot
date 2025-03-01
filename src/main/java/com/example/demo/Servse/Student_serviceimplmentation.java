@@ -75,6 +75,16 @@ public class Student_serviceimplmentation implements Student_servisinterface {
             return null;
         }
     }
+
+    @Override
+    public List<String> findAllNames() {
+        return studentrepostely.findAllNames();
+    }
+
+    @Override
+    public List<Stutnt> findByNameLike(String name) {
+        return studentrepostely.findByNameLike(name);
+    }
 }
 
 

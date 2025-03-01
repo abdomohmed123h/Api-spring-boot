@@ -12,6 +12,9 @@ public interface Student_servisinterface {
    List<Stutnt> findAll();
     List<Stutnt> findByName(String name);
     List<Stutnt> findicloding (String surname);
+    List<String> findAllNames();
+    List<Stutnt> findByNameLike(String name);
+
 
 
 }
