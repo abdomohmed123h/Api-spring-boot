@@ -1,8 +1,12 @@
 package com.example.demo.Servse;
 
+import com.example.demo.dto.Stutntdeto;
 import com.example.demo.model.Stutnt;
 import com.example.demo.repo.Studentrepostely;
+import jakarta.transaction.SystemException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.proxy.UndeclaredThrowableException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +18,8 @@ import java.util.Optional;
 public class Student_serviceimplmentation implements Student_servisinterface {
      @Autowired
     private Studentrepostely studentrepostely;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public void sevestudent(Stutnt stutnt) {
@@ -85,6 +91,29 @@ public class Student_serviceimplmentation implements Student_servisinterface {
     public List<Stutnt> findByNameLike(String name) {
         return studentrepostely.findByNameLike(name);
     }
+
+
+    @Override
+    public int changePassword(long id, String password) {
+        return studentrepostely.updatePassword(id, password);
+    }
+
+    @Override
+    public void sevestudentdeo(Stutntdeto student) {
+        studentrepostely.save(modelMapper.map(student, Stutnt.class));
+    }
+
+    public void sevestudentexception(Stutntdeto student) throws SystemException {
+        if (student.getId() != null) {
+
+            throw new RuntimeException("inviled.id");
+        } else {
+          studentrepostely.save(modelMapper.map(student, Stutnt.class));
+        }
+    }
+
+
+
 }
 
 

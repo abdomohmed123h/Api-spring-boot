@@ -22,6 +22,7 @@ public class Stutnt {
     private Long id;
     private String name;
     private int age;
+    private String password;
 
 
 
